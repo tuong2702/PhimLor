@@ -36,8 +36,9 @@
           </a>
           <c:if test="${!empty sessionScope.user.id}">
             <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="/PhimLor/forgotPassword">Forgot password</a></li>
             <li><a class="dropdown-item" href="/PhimLor/changePassword">Change Password</a></li>
-            <li><a class="dropdown-item" href="/PhimLor/updateAcount">Update account</a></li>
+            <li><a class="dropdown-item" href="/PhimLor/updateAccount">Update account</a></li>
             </ul>
           </c:if>
           <c:if test="${empty sessionScope.user.id}">

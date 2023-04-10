@@ -57,29 +57,38 @@
 		<jsp:include page="headerUser.jsp"></jsp:include>
 	</c:if>
 
-	<div class="container" style="margin-top: 8rem;">
+<div class="container" style="margin-top: 8rem;">
     <center>
-      <h1>Forgot password</h1>
+      <h1>Change Password</h1>
     </center>
     <br>
     <div class="row">
-      <form class="col-6" style="margin: auto;" action="/PhimLor/forgotPassword/click" method="post">
+      <form class="col-6" style="margin: auto;" action="/PhimLor/changePassword" method="post">
         <hr>
         <div class="mb-3">
           <label class="form-label">Username</label>
-          <input name="username" type="text" class="form-control">
+          <input name="username" type="text" class="form-control" value="${user}" disabled>
         </div>
         <div class="mb-3">
-          <label class="form-label">Email</label> 
-          <input name="email" type="email" class="form-control">
+          <label class="form-label">Old password</label> <input name="password" 
+						type="password" class="form-control">
         </div>
         <div class="mb-3">
-        		${message}
+          <label class="form-label">New Password</label> <input name="newPassword" 
+						type="password" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Send</button>
+        <div class="mb-3">
+          <label class="form-label">Confirm New Password</label> <input name="confirmPassword"
+						type="password" class="form-control">
+        </div>
+        <div class="mb-3">
+					${success}
+				</div>
+        <button type="submit" class="btn btn-primary">Change Password</button>
       </form>
     </div>
   </div>
+	
 
 	<br><br>
 	<jsp:include page="footer.jsp"></jsp:include>

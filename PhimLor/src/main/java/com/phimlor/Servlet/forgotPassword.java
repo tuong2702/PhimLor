@@ -20,61 +20,73 @@ import com.phimlor.DAO.UserDAO;
 import com.phimlor.model.User;
 
 
-@WebServlet("/forgotPassword")
+@WebServlet({"/forgotPassword", "/forgotPassword/click"})
 public class forgotPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     @Override
     	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     		String method = req.getMethod();
-    		if(method.equalsIgnoreCase("POST")) {
-    			UserDAO dao = new UserDAO();
-    			User user = dao.findById(req.getParameter("username"));
-    				// Thông số kết nối
-        			Properties props = new Properties();
-        			props.setProperty("mail.smtp.auth", "true");
-        			props.setProperty("mail.smtp.starttls.enable", "true");
-        		    props.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
-        			props.setProperty("mail.smtp.host", "smtp.gmail.com");
-        			props.setProperty("mail.smtp.port", "587");
-        			// Kết nối
-        			Session session = Session.getInstance(props, new Authenticator() {
-        				protected PasswordAuthentication getPasswordAuthentication() {
-        					String username = "tuonglqpc04126@fpt.edu.vn";
-        					String password = "2722003tuong";
-        					return new PasswordAuthentication(username, password);
-        				}
-        			});
-        			//Tạo massage
-        			MimeMessage message = new MimeMessage(session);
-        			try {
-//        				message.setFrom(new InternetAddress(fromMail));
-        				message.setRecipients(Message.RecipientType.TO, req.getParameter("email"));
-        				message.setSubject("Mật khẩu tài khoản của bạn!", "utf-8");
-        				message.setText("Bạn nhận được email lấy lại mật khẩu! <br>" + 
-        						"Tài khoản: " + user.getId() +"<br>" + "Mật khẩu tạm thời: " +user.getPassword() + "<br>" +
-        						"Vui lòng đổi lại mật khẩu mới sau khi lấy lại mật khẩu!"
-        						, "utf-8", "html");
-        				message.setReplyTo(message.getFrom());
+    		UserDAO dao = new UserDAO();
+    		String username = req.getParameter("username");
+    		String email = req.getParameter("email");
+    		String uri = req.getRequestURI();
+    		if(uri.contains("click")) {
+    			User user = dao.findById(username);
+    			if(user.getEmail().contains(email)) {
         				
-        			} catch (MessagingException e) {
-        				e.printStackTrace();
-        			}
-        			// Gửi message
-        			try {
-        				Transport.send(message);
-        				req.setAttribute("message", "<div class='alert alert-success alert-dismissible fade show' role='alert'>"
-        						+ "<strong>Gửi lại mật khẩu thành công!</strong>"
-        						+ "  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>"
-        						+ "</div>");
-        			} catch (MessagingException e) {
-        				req.setAttribute("message", "<div class='alert alert-danger alert-dismissible fade show' role='alert'>"
-        						+ "<strong>Gửi lại mật khẩu không thành công!</strong>"
-        						+ "  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>"
-        						+ "</div>");
-        				e.printStackTrace();
-        			}
+        				// Thông số kết nối
+            			Properties props = new Properties();
+            			props.setProperty("mail.smtp.auth", "true");
+            			props.setProperty("mail.smtp.starttls.enable", "true");
+            		    props.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+            			props.setProperty("mail.smtp.host", "smtp.gmail.com");
+            			props.setProperty("mail.smtp.port", "587");
+            			// Kết nối
+            			Session session = Session.getInstance(props, new Authenticator() {
+            				protected PasswordAuthentication getPasswordAuthentication() {
+            					String username = "tuonglqpc04126@fpt.edu.vn";
+            					String password = "2722003tuong";
+            					return new PasswordAuthentication(username, password);
+            				}
+            			});
+            			//Tạo massage
+            			MimeMessage message = new MimeMessage(session);
+            			try {
+//            				message.setFrom(new InternetAddress(fromMail));
+            				message.setRecipients(Message.RecipientType.TO, req.getParameter("email"));
+            				message.setSubject("Mật khẩu tài khoản của bạn!", "utf-8");
+            				message.setText("Bạn nhận được email lấy lại mật khẩu! <br>" + 
+            						"Tài khoản: " + user.getId() +"<br>" + "Mật khẩu tạm thời: " +user.getPassword() + "<br>" +
+            						"Vui lòng đổi lại mật khẩu mới sau khi lấy lại mật khẩu!"
+            						, "utf-8", "html");
+            				message.setReplyTo(message.getFrom());
+            				
+            			} catch (MessagingException e) {
+            				e.printStackTrace();
+            			}
+            			// Gửi message
+            			try {
+            				Transport.send(message);
+            				req.setAttribute("message", "<div class='alert alert-success alert-dismissible fade show' role='alert'>"
+            						+ "<strong>Gửi lại mật khẩu thành công!</strong>"
+            						+ "  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>"
+            						+ "</div>");
+            			} catch (MessagingException e) {
+            				req.setAttribute("message", "<div class='alert alert-danger alert-dismissible fade show' role='alert'>"
+            						+ "<strong>Gửi lại mật khẩu không thành công!</strong>"
+            						+ "  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>"
+            						+ "</div>");
+            				e.printStackTrace();
+            			}
+    			}else {
+    				req.setAttribute("message", "<div class='alert alert-danger alert-dismissible fade show' role='alert'>"
+    						+ "<strong>Gửi lại mật khẩu không thành công!</strong>. Email không đúng!"
+    						+ "  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>"
+    						+ "</div>");
     			}
+    		}
+    		
     		req.getRequestDispatcher("/views/forgotPassword.jsp").forward(req, resp);
     	}
 }

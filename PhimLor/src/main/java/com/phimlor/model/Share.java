@@ -19,11 +19,11 @@ public class Share {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int shareId;
 
-	@Column(name="Email")
+	@Column(name="emails")
 	private String email;
 
-	@Column(name="SharedDate")
-	private Date sharedDate;
+	@Column(name="ShareDate")
+	private Date shareDate;
 	
 	@ManyToOne
 	@JoinColumn(name="UserId")
@@ -49,12 +49,12 @@ public class Share {
 		this.email = email;
 	}
 
-	public Date getSharedDate() {
-		return sharedDate;
+	public Date getShareDate() {
+		return shareDate;
 	}
 
-	public void setSharedDate(Date sharedDate) {
-		this.sharedDate = sharedDate;
+	public void setShareDate(Date shareDate) {
+		this.shareDate = shareDate;
 	}
 
 	public User getUser() {

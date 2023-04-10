@@ -1,6 +1,7 @@
 package com.phimlor.Servlet;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -18,8 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.phimlor.DAO.FavoriteDAO;
+import com.phimlor.DAO.ShareDAO;
 import com.phimlor.model.Favorite;
+import com.phimlor.model.Share;
 import com.phimlor.model.User;
+import com.phimlor.model.Video;
 
 @WebServlet({"/favorite", "/favorite/userid/*", "/favorite/edit/*", "/favorite/dislike/*", "/favorite/share/*"})
 public class favorite extends HttpServlet {
@@ -82,8 +86,22 @@ public class favorite extends HttpServlet {
     			} catch (MessagingException e) {
     				e.printStackTrace();
     			}
-    			// Gửi message
+    			
     			try {
+    				//thêm vào bảng share
+    				Video video = new Video();
+    				User user2 = new User();
+    				ShareDAO daoShare = new ShareDAO();
+    				Share share = new Share();
+    				share.setEmail(req.getParameter("toMail"));
+    				share.setShareDate(new Date());
+    				video.setId(favorite.getVideo().getId());
+    				share.setVideo(video);
+    				user.setId(favorite.getUser().getId());
+    				share.setUser(user);
+    				daoShare.create(share);
+    				
+    				// Gửi message
     				Transport.send(message);
     				req.setAttribute("sendMail", true);
     			} catch (MessagingException e) {

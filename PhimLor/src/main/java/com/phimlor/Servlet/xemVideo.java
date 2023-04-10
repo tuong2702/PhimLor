@@ -23,8 +23,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.phimlor.DAO.FavoriteDAO;
+import com.phimlor.DAO.ShareDAO;
 import com.phimlor.DAO.VideoDAO;
 import com.phimlor.model.Favorite;
+import com.phimlor.model.Share;
 import com.phimlor.model.User;
 import com.phimlor.model.Video;
 
@@ -101,8 +103,20 @@ public class xemVideo extends HttpServlet {
 			} catch (MessagingException e) {
 				e.printStackTrace();
 			}
-			// Gửi message
+			
 			try {
+				//thêm vào bảng share
+				ShareDAO daoShare = new ShareDAO();
+				Share share = new Share();
+				share.setEmail(request.getParameter("toMail"));
+				share.setShareDate(new Date());
+				video.setId(video.getId());
+				share.setVideo(video);
+				user.setId(userSession.getId());
+				share.setUser(user);
+				daoShare.create(share);
+				
+				//Gửi Message
 				Transport.send(message);
 				request.setAttribute("sendMail", true);
 			} catch (MessagingException e) {

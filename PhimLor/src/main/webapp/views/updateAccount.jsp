@@ -59,27 +59,35 @@
 
 	<div class="container" style="margin-top: 8rem;">
     <center>
-      <h1>Forgot password</h1>
+      <h1>Update Account</h1>
     </center>
     <br>
     <div class="row">
-      <form class="col-6" style="margin: auto;" action="/PhimLor/forgotPassword/click" method="post">
+      <form class="col-6" style="margin: auto;" action="/PhimLor/updateAccount/click" method="post">
         <hr>
         <div class="mb-3">
           <label class="form-label">Username</label>
-          <input name="username" type="text" class="form-control">
+          <input name="username" type="text" class="form-control" value="${username}"> 
         </div>
         <div class="mb-3">
-          <label class="form-label">Email</label> 
-          <input name="email" type="email" class="form-control">
+          <label class="form-label">Password</label> <input name="password" value="${password}"
+						type="password" class="form-control">
         </div>
         <div class="mb-3">
-        		${message}
+          <label class="form-label">Fullname</label> <input name="fullname"  value="${fullname}"
+						type="text" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Send</button>
+        <div class="mb-3">
+          <label class="form-label">Email</label> <input name="email"  value="${email}"
+						type="email" class="form-control">
+        </div>
+        <div class="mb-3">
+        	${success}
+        </div>
+        <button type="submit" class="btn btn-primary">Update Account</button>
       </form>
     </div>
-  </div>
+  </div>	
 
 	<br><br>
 	<jsp:include page="footer.jsp"></jsp:include>
