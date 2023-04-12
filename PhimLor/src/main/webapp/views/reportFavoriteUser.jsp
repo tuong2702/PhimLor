@@ -41,6 +41,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/PhimLor/css/style.css">
 <script src="/PhimLor/js/controller.js"></script>
+<%@ page import="javax.servlet.*,java.text.*"%>
 </head>
 
 <body>
@@ -57,42 +58,60 @@
 		<jsp:include page="headerUser.jsp"></jsp:include>
 	</c:if>
 
-	<div class="container" style="margin-top: 8rem;">
-		<center>
-			<h1>Sign up</h1>
-		</center>
-		<br> 
+	<div class="container" style="margin-top: 9rem;">
 		<div class="row">
-			<form class="col-6" style="margin: auto;" action="/PhimLor/register/click"
-				 method="post">
-         <hr>
-				<div class="mb-3">
-					<label class="form-label">Username</label>
-					<input name="username" type="text" class="form-control" >
-				</div>
-        		<div class="mb-3">
-					<label class="form-label">Fullname</label>
-					<input name="fullname" type="text" class="form-control" >
-				</div>
-				<div class="mb-3">
-					<label class="form-label">Password</label> <input name="password" 
-						type="password" class="form-control">
-				</div>
-       		    <div class="mb-3">
-					<label class="form-label">Email</label>
-					<input name="email" type="email" class="form-control" >
-				</div>
-				<div class="mb-3">
-					${message} ${success}
-				</div>
-				<button type="submit" class="btn btn-primary">Sign up</button>
-			</form>
-			
+
+			<div class="col-12">
+				<form action="/PhimLor//reportFavoriteUser/click"
+					class="input-group" method="post">
+					<select name="id" class="form-select form-select-lg"
+						aria-label=".form-select-lg example"> 
+						<option selected>Video title ?</option>
+						<c:forEach var="item" items="${videos}">
+						<option value="${item.title}">${item.title}</option>
+						</c:forEach>
+					</select>
+					<button class="btn btn-success">Search</button>
+				</form>
+			</div>
+
+			<table class="table table-bordered border-primary mt-4">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>Fullname</th>
+						<th>Email</th>
+						<th>Favorite Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="item" items="${favorites}">
+						<tr>
+							<td>${item.user.id}</td>
+							<td>${item.user.fullname}</td>
+							<td>${item.user.email}</td>
+							<td><fmt:formatDate value="${item.likeDate}"
+									pattern="dd/MM/yyyy" /></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><a href="#"
+					class="page-link bi bi-chevron-left"></a></li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link bi bi-chevron-right"
+					href="#"></a></li>
+			</ul>
 		</div>
 	</div>
-	
 
-	<br><br>
+
+
+	<br>
+	<br>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 

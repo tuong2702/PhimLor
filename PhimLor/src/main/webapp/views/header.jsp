@@ -25,9 +25,9 @@
               REPORTS
             </a>
             <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="#">Favorite</a></li>
-              <li><a class="dropdown-item" href="#">Favorite user</a></li>
-              <li><a class="dropdown-item" href="#">Shares</a></li>
+              <li><a class="dropdown-item" href="/PhimLor/reportFavorite">Favorite</a></li>
+              <li><a class="dropdown-item" href="/PhimLor/reportFavoriteUser">Favorite User</a></li>
+              <li><a class="dropdown-item" href="/PhimLor/reportFavoriteShare">Shared Friends</a></li>
             </ul>
           </nav>
           <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">

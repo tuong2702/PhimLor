@@ -41,6 +41,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/PhimLor/css/style.css">
 <script src="/PhimLor/js/controller.js"></script>
+<%@ page import="javax.servlet.*,java.text.*" %>
 </head>
 
 <body>
@@ -57,42 +58,49 @@
 		<jsp:include page="headerUser.jsp"></jsp:include>
 	</c:if>
 
-	<div class="container" style="margin-top: 8rem;">
-		<center>
-			<h1>Sign up</h1>
-		</center>
-		<br> 
+	<div class="container" style="margin-top: 9rem;">
 		<div class="row">
-			<form class="col-6" style="margin: auto;" action="/PhimLor/register/click"
-				 method="post">
-         <hr>
-				<div class="mb-3">
-					<label class="form-label">Username</label>
-					<input name="username" type="text" class="form-control" >
-				</div>
-        		<div class="mb-3">
-					<label class="form-label">Fullname</label>
-					<input name="fullname" type="text" class="form-control" >
-				</div>
-				<div class="mb-3">
-					<label class="form-label">Password</label> <input name="password" 
-						type="password" class="form-control">
-				</div>
-       		    <div class="mb-3">
-					<label class="form-label">Email</label>
-					<input name="email" type="email" class="form-control" >
-				</div>
-				<div class="mb-3">
-					${message} ${success}
-				</div>
-				<button type="submit" class="btn btn-primary">Sign up</button>
-			</form>
-			
+			<table class="table table-bordered border-primary mt-4">
+				<thead>
+					<tr>
+						<th>Video Title</th>
+						<th>Favorite Counts</th>
+						<th>Latest Date</th>
+						<th>Oldest Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="item" items="${reports}">
+						<tr>
+							<td>${item.group}</td>
+							<td>${item.likes}</td>
+							<td> 
+							<fmt:formatDate value="${item.newest}" pattern="dd/MM/yyyy" />
+							</td>
+							<td>
+							<fmt:formatDate value="${item.oldest}" pattern="dd/MM/yyyy" />
+							</td>
+						</tr>
+					</c:forEach>
+
+				</tbody>
+			</table>
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><a href="#"
+					class="page-link bi bi-chevron-left"></a></li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link bi bi-chevron-right"
+					href="#"></a></li>
+			</ul>
 		</div>
 	</div>
-	
 
-	<br><br>
+
+
+	<br>
+	<br>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name="Shares")
 public class Share {
 	@Id
-	@Column(name="ShareId")
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int shareId;
 

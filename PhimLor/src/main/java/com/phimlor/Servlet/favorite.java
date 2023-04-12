@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.phimlor.DAO.FavoriteDAO;
 import com.phimlor.DAO.ShareDAO;
+import com.phimlor.DAO.UserDAO;
 import com.phimlor.model.Favorite;
 import com.phimlor.model.Share;
 import com.phimlor.model.User;
@@ -40,8 +41,7 @@ public class favorite extends HttpServlet {
     			id = uri.substring(uri.lastIndexOf("/")+1);
     		}else if(uri.contains("edit")) {
     			String id1 = uri.substring(uri.lastIndexOf("/")+1);
-    			favorite = dao.findById(id1);
-    			req.setAttribute("form", favorite);
+    			req.setAttribute("form", dao.setFormLike(user.getId(), id1));
     			req.setAttribute("favorites", dao.ListFavoriteUser(user.getId()));
     			req.getRequestDispatcher("/views/favorite.jsp").forward(req, resp);
     			return;

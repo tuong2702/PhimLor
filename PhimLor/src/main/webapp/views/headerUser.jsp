@@ -12,6 +12,8 @@
     </div>
 </div>
 
+
+
  <!-- Header -->
   <header style="z-index: 9999">
     <div class="p-3 text-white">
@@ -46,6 +48,7 @@
             <li><a class="dropdown-item" href="/PhimLor/login">Login</a></li>
             <li><a class="dropdown-item" href="/PhimLor/register">Register</a></li>
             <li><a class="dropdown-item" href="/PhimLor/forgotPassword">Forgot password</a></li>
+            
             </ul>
           </c:if>
         </nav>

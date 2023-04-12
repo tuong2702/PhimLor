@@ -24,6 +24,7 @@ public class login extends HttpServlet {
 		req.setAttribute("password", CookieUtils.get("password", req));
 		String userCheck = CookieUtils.get("username", req);
 		String passCheck = CookieUtils.get("password", req);
+		
 		if(userCheck=="" && passCheck=="") {
 			req.setAttribute("checkRemember", null);
 		}else {

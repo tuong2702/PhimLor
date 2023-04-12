@@ -57,7 +57,18 @@ public class FavoriteDAO{
 			return true;
 		}
 		
-}
+      }
+	
+		public Favorite setFormLike( String id, String VideoId){	
+		
+		String jpql = "SELECT v FROM Favorite v WHERE v.video.id = ?0 and v.user.id=?1";
+		TypedQuery<Favorite> query = em.createQuery(jpql, Favorite.class);
+		query.setParameter(0, VideoId);
+		query.setParameter(1, id);
+		Favorite list =  query.getSingleResult();
+		return list;
+		
+      }
 	
 	public List<Favorite> ListFavoriteUser(String key) {
 		String jpql = "SELECT f FROM Favorite f Where f.user.id =:id";
@@ -74,4 +85,5 @@ public class FavoriteDAO{
 		Favorite list = query.getSingleResult();
 		return list;
 	}
+	
 }

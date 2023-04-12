@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
+import com.phimlor.model.Favorite;
 import com.phimlor.model.User;
 import com.phimlor.model.Video;
 
@@ -74,5 +75,11 @@ public class VideoDAO extends AbstractEntityDao<Video, String>{
 		query.setMaxResults(index);
 		List<Video> list = query.getResultList();
 		return list;
+	}
+	
+	public void updateViews(int views) {
+		String jpql = "Update v Video v set v.views =: views";
+		TypedQuery<Video> query = em.createQuery(jpql, Video.class);
+		query.setParameter("views", views + 1);
 	}
 }

@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
+import com.phimlor.model.Favorite;
 import com.phimlor.model.User;
 import com.phimlor.model.Video;
 import com.phimlor.DAO.JpaUtils;
@@ -77,5 +78,18 @@ public class UserDAO extends AbstractEntityDao<User, String>{
 		query.setMaxResults(index);
 		List<User> list = query.getResultList();
 		return list;
+	}
+	
+	
+	public Boolean findByEmail(String key) {
+		String jpql = "SELECT o FROM User o Where o.email = ?0";
+		TypedQuery<User> query = em.createQuery(jpql, User.class);
+		query.setParameter(0, key);
+		List<User> list =  query.getResultList();
+		if(list.size()==0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }
