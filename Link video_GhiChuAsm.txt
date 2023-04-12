@@ -1,0 +1,50 @@
+Link video: https://drive.google.com/drive/folders/1SDrmCvgX1QdF4Kc1Us0fiDxh0rEpJbey?usp=sharing
+
+1. Trang chủ
+    + Load ảnh, tiêu đề phim, hiển thị theo lượt xem giảm dần
+    + Phân trang, mỗi trang 9 tiểu phẩm
+   
+   - Click vào tiểu phẩm: -hiện chi tiết tiểu phẩm.
+				  -phát video, hiện thêm các video bên dưới để chọn và xem.  
+				  -có thể like video hoặc chia sẻ (phải đăng nhập để thực hiện)	
+                          -click vào nút like video sẻ được thêm vào danh sách video được yêu thích
+                          -click vào nút share nhập email người nhập, video sẻ được chia sẻ 
+2. Đăng nhập
+    + Nhập username và password đã đăng ký để sử dụng.
+    + Có thể check vào ghi nhớ tài khoản và mật khẩu để đăng nhập không cần nhập.
+
+3. Đăng ký
+    + Nhập đầy đủ thông tin để đăng ký
+
+4. Quên mật khẩu
+    + Nhập username và email(email được đăng ký tài khoản) để lấy lại mật khẩu.
+
+5. Đổi mật khẩu
+    + Nhập mật khẩu cũ và mật khẩu mới để đổi mật khẩu.
+
+6. Cập nhật tài khoản
+    + Hiện các thông tin của tài khoản.
+    + Nhập thông tin muốn cập nhật(không được cập nhập username)
+
+7. Trang yêu thích
+    + Hiện danh sách các video yêu thích của tài khoản đã được đăng nhập
+    + Có thể bỏ like, chia sẻ và phát video để xem lại
+
+8. Đăng xuất
+    + Xóa tài khoản khỏi session và trở về trang chủ
+
+9. Trang quản lý video (dùng tài khoản với vai trò admin)
+    + Có thể thêm, Sửa, Xóa, Cập nhật các video
+    + Hiện danh sách các video lên bảng, có phân theo từng trang
+     
+
+10. Trang quản lý người dùng(dùng tài khoản với vai trò admin)
+    + Có thể Xóa, Cập nhật các tài khoản
+    + Hiện danh sách các tài khoản lên bảng
+
+11. Thống kê
+    + Thống kê các video được yêu thích
+    + Thống kê người yêu thích theo video
+    + Thống kê người đã chia sẻ video  
+	
+ 
